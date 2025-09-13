@@ -1,0 +1,21 @@
+site_name: notes
+docs_dir: src
+site_dir: out
+
+theme:
+  theme:
+  name: readthedocs
+  collapse_navigation: true   # enable collapsing
+  navigation_depth: 3       # show nested levels (must be >1)
+  sticky_navigation: true   
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - rust
+
+nav:
+  - Chapter 1:
+      - Intro: chapter1/intro.md
+      - Lesson 1: chapter1/lesson-1.md
+  - Chapter 2:
+      - Overview: chapter2/overview.md
