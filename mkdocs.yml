@@ -3,7 +3,6 @@ docs_dir: src
 site_dir: out
 
 theme:
-  theme:
   name: readthedocs
   collapse_navigation: true   # enable collapsing
   navigation_depth: 3       # show nested levels (must be >1)
@@ -13,10 +12,32 @@ theme:
     - yaml
     - rust
 
+plugins:
+  - search
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - tables
+  - extra
+  - def_list
+  - toc:
+      permalink: ""
+      separator: "_"
+  - admonition
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
 nav:
   - Home: index.md
-  - Math:
-    - proof: math/proof-writing.md
+  - Mathematical Background:
+      - Proof Writing: "Mathematical Background/proof-writing.md"
+  - Basics:
+      - Divide and Conquer: Basics/1-divide-and-conquer.md
+      - Dynamic Programming: Basics/2-dynamic-programming.md
+      - Greedy Method: Basics/3-greedy-method.md
   - CSE574:
       - 1: CSE574/1.md
   - CSE590:

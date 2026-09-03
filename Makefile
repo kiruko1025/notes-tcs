@@ -6,7 +6,7 @@ PDF     := $(OUT_DIR)/documentation.pdf
 
 
 # ---- commands (override if you need) ----
-MKDOCS  := mkdocs
+MKDOCS  := $(if $(wildcard .venv/bin/mkdocs),.venv/bin/mkdocs,mkdocs)
 PANDOC  := pandoc
 PDFENG  ?= xelatex
 
