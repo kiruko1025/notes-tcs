@@ -34,11 +34,13 @@ nav:
   - Home: index.md
   - Mathematical Background:
       - Proof Writing: "Mathematical Background/proof-writing.md"
-  - Basics:
-      - Divide and Conquer: Basics/1-divide-and-conquer.md
-      - Dynamic Programming: Basics/2-dynamic-programming.md
-      - Greedy Method: Basics/3-greedy-method.md
+  - Algorithms:
+      - Divide and Conquer: Algorithms/1-divide-and-conquer.md
+      - Dynamic Programming: Algorithms/2-dynamic-programming.md
+      - Greedy Method: Algorithms/3-greedy-method.md
   - CSE574:
       - 1: CSE574/1.md
+      - 2: CSE574/2.md
   - CSE590:
       - 1: CSE590/1.md
+      - 2: CSE590/2.md
