@@ -4,8 +4,8 @@ site_dir: out
 
 theme:
   name: readthedocs
-  collapse_navigation: true   # enable collapsing
-  navigation_depth: 3       # show nested levels (must be >1)
+  collapse_navigation: true   # section headings only for the current lecture
+  navigation_depth: 4        # course, lecture, section, subsection
   sticky_navigation: true   
   highlightjs: true
   hljs_languages:
@@ -38,9 +38,22 @@ nav:
       - Divide and Conquer: Algorithms/1-divide-and-conquer.md
       - Dynamic Programming: Algorithms/2-dynamic-programming.md
       - Greedy Method: Algorithms/3-greedy-method.md
-  - CSE574:
-      - 1: CSE574/1.md
-      - 2: CSE574/2.md
-  - CSE590:
-      - 1: CSE590/1.md
-      - 2: CSE590/2.md
+  - Courses:
+      - CSE574:
+          - 2: CSE574/2.md
+          - 3: CSE574/3.md
+          - 4: CSE574/4.md
+          - 5: CSE574/5.md
+          - 6: CSE574/6.md
+          - 7: CSE574/7.md
+          - 8: CSE574/8.md
+          - 9: CSE574/9.md
+      - CSE590:
+          - 2: CSE590/2.md
+          - 3: CSE590/3.md
+          - 4: CSE590/4.md
+          - 5: CSE590/5.md
+          - 6: CSE590/6.md
+          - 7: CSE590/7.md
+          - 8: CSE590/8.md
+          - 9: CSE590/9.md
