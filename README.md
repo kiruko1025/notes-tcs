@@ -30,7 +30,7 @@ PDF generation uses Pandoc, XeLaTeX, Noto Serif/Sans, and a supported monospace
 font. On Debian/Ubuntu, install them with:
 
 ```sh
-sudo apt-get install pandoc texlive-xetex texlive-latex-extra texlive-fonts-recommended fonts-noto-core fonts-dejavu-core fontconfig
+sudo apt-get install pandoc texlive-xetex texlive-latex-extra texlive-fonts-recommended lmodern fonts-noto-core fonts-dejavu-core fontconfig
 ```
 
 ```sh

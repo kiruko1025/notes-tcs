@@ -35,7 +35,7 @@ jobs:
       - name: Install PDF tools and fonts
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends pandoc texlive-xetex texlive-latex-extra texlive-fonts-recommended fonts-noto-core fonts-dejavu-core fontconfig
+          sudo apt-get install -y --no-install-recommends pandoc texlive-xetex texlive-latex-extra texlive-fonts-recommended lmodern fonts-noto-core fonts-dejavu-core fontconfig
 
       - name: Build HTML + PDF
         run: |

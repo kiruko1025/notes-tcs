@@ -3,7 +3,7 @@
 
 Requires pandoc, xelatex, fontconfig, and PyYAML. Source Markdown is never modified.
 Ubuntu packages: pandoc texlive-xetex texlive-latex-extra
-texlive-fonts-recommended fonts-noto-core fonts-dejavu-core fontconfig.
+texlive-fonts-recommended lmodern fonts-noto-core fonts-dejavu-core fontconfig.
 Install poppler-utils to render and inspect generated PDFs.
 """
 import argparse
