@@ -1,45 +1,23 @@
-# ---- paths ----
-SRC_DIR := src
-OUT_DIR := out
-TOC     := toc.txt
-PDF     := $(OUT_DIR)/documentation.pdf
+PYTHON := $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
+PORT ?= 8000
 
+.PHONY: all html pdf serve deploy clean
 
-# ---- commands (override if you need) ----
-MKDOCS  := $(if $(wildcard .venv/bin/mkdocs),.venv/bin/mkdocs,mkdocs)
-PANDOC  := pandoc
-PDFENG  ?= xelatex
+all: pdf
 
-# ---- phony ----
-.PHONY: all html pdf serve clean deploy
-
-# Build everything
-all: html pdf
-
-# MkDocs HTML -> out/
 html:
-	$(MKDOCS) build --clean
+	$(PYTHON) scripts/build_site.py
 
-# Pandoc+LaTeX -> out/documentation.pdf
-pdf: $(TOC) | $(OUT_DIR)
-	$(PANDOC) $$(cat $(TOC)) \
-	  --from markdown \
-	  --pdf-engine=$(PDFENG) \
-	  --toc --number-sections \
-	  -V geometry:margin=1in \
-	  -V fontsize=11pt \
-	  -o $(PDF)
+# HTML cleans out/, so finish it before PDF generation even with parallel make.
+pdf: html
+	$(PYTHON) scripts/build_pdfs.py
 
-# Local preview for HTML
-serve:
-	$(MKDOCS) serve
+serve: all
+	$(PYTHON) -m http.server $(PORT) --directory out
 
-# Publish HTML (and the PDF that sits in out/) to gh-pages
-deploy: all
-	$(MKDOCS) gh-deploy --force
-
-$(OUT_DIR):
-	mkdir -p $(OUT_DIR)
+# Publish the latest pushed main commit. Normal pushes trigger this automatically.
+deploy:
+	gh workflow run main.yml --ref main
 
 clean:
-	rm -rf $(OUT_DIR)
+	$(PYTHON) -c "import shutil; shutil.rmtree('out', ignore_errors=True); shutil.rmtree('work/pdf', ignore_errors=True)"

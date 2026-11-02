@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A personal library of computer science course notes. Read online, explore the details, and download the complete collection as PDF.">
+  <meta name="theme-color" content="#2447b2">
+  <title>CS Notes — A personal course library</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%232447b2'/%3E%3Ctext x='20' y='27' text-anchor='middle' font-family='serif' font-size='25' fill='white'%3Eλ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/style.css">
+  <script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],macros:{partialto:'\\rightharpoonup'},processEscapes:true},svg:{fontCache:'local'},options:{ignoreHtmlClass:'.*|',processHtmlClass:'arithmatex'},startup:{typeset:false}};</script>
+  <script defer src="assets/vendor/tex-svg.js"></script>
+  <script defer src="assets/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <div class="scrim" id="scrim"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Library navigation">
+    <a class="brand" href="#/"><span class="brand-mark">λ</span><span>CS Notes</span></a>
+    <button class="search-trigger sidebar-search" data-search><span class="search-icon"></span><span>Search notes</span><kbd>⌘ K</kbd></button>
+    <nav id="navigation"></nav>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><div class="top-left"><button class="icon-button menu-button" id="menu" aria-label="Open navigation" aria-expanded="false">☰</button><div id="breadcrumbs"></div></div><div class="top-right"><button class="icon-button" data-search aria-label="Search notes"><span class="search-icon"></span></button></div></header>
+    <main id="content" tabindex="-1"><div class="loading">Opening your notebook…</div></main>
+  </div>
+  <dialog id="search-dialog" aria-labelledby="search-label">
+    <div class="search-input-wrap"><span class="search-icon"></span><label class="sr-only" id="search-label" for="search-input">Search all notes</label><input id="search-input" type="search" placeholder="Search a concept, lecture, or course…" autocomplete="off"><button class="close-search" id="close-search" aria-label="Close search">Esc</button></div>
+    <div id="search-results" aria-live="polite"></div><div class="search-footer">Searches titles, topics, and the full text of your notes.</div>
+  </dialog>
+  <div class="toast" id="toast" role="status"></div>
+</body>
+</html>
