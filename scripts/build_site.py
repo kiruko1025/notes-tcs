@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Render the preserved Markdown collection into the searchable site catalog."""
-import json, re, shutil
+import hashlib, json, re, shutil
 from pathlib import Path
 from html import escape, unescape
 import markdown, yaml
@@ -85,6 +85,10 @@ output = ROOT / 'out'
 if output.exists():
     shutil.rmtree(output)
 shutil.copytree(ROOT / 'web', output)
+# A new stylesheet URL prevents browsers from reusing an older layout after deploys.
+stylesheet_version = hashlib.sha256((output/'assets/style.css').read_bytes()).hexdigest()[:12]
+index = output/'index.html'
+index.write_text(index.read_text().replace('href="assets/style.css"', f'href="assets/style.css?v={stylesheet_version}"'), encoding='utf-8')
 (output/'assets/catalog.json').write_text(json.dumps(dict(collections=COLLECTIONS, notes=notes), ensure_ascii=False, default=str), encoding='utf-8')
 for file in (ROOT/'src').rglob('*.md'):
     target = output/'source'/file.relative_to(ROOT/'src')
