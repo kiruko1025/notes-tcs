@@ -117,6 +117,9 @@ index.write_text(index.read_text().replace('href="assets/style.css"', f'href="as
 script_version = hashlib.sha256((output/'assets/app.js').read_bytes()).hexdigest()[:12]
 index.write_text(index.read_text().replace('src="assets/app.js"', f'src="assets/app.js?v={script_version}"'), encoding='utf-8')
 (output/'assets/catalog.json').write_text(json.dumps(dict(collections=COLLECTIONS, notes=notes, aliases=aliases), ensure_ascii=False, default=str), encoding='utf-8')
+# Change the catalog URL whenever note content changes, including note-only edits.
+catalog_version = hashlib.sha256((output/'assets/catalog.json').read_bytes()).hexdigest()[:12]
+index.write_text(index.read_text().replace('</head>', f'<meta name="notes-catalog" content="assets/catalog.json?v={catalog_version}">\n</head>'), encoding='utf-8')
 for file in (ROOT/'src').rglob('*.md'):
     target = output/'source'/file.relative_to(ROOT/'src')
     target.parent.mkdir(parents=True, exist_ok=True)

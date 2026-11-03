@@ -85,4 +85,4 @@ document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLower
 $('#menu').addEventListener('click',()=>{const open=$('#sidebar').classList.toggle('open');$('#scrim').classList.toggle('visible',open);$('#menu').setAttribute('aria-expanded',String(open));});
 $('#scrim').addEventListener('click',closeMenu);
 window.addEventListener('hashchange',render);
-fetch('assets/catalog.json').then(r=>{if(!r.ok)throw new Error('Unable to load notes');return r.json();}).then(data=>{catalog=data;render();}).catch(()=>{$('#content').innerHTML='<div class="page"><h1>The notebook could not be opened.</h1><p>Please reload the page to try again.</p></div>';});
+fetch(document.querySelector('meta[name="notes-catalog"]')?.content || 'assets/catalog.json', {cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Unable to load notes');return r.json();}).then(data=>{catalog=data;render();}).catch(()=>{$('#content').innerHTML='<div class="page"><h1>The notebook could not be opened.</h1><p>Please reload the page to try again.</p></div>';});
