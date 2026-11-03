@@ -70,7 +70,7 @@ def read_note(path):
 
 def title_for(path, metadata, text):
     title = metadata.get('title')
-    if path.parent.name.startswith('CSE'):
+    if path.parent.name.startswith('CSE') and path.stem.isdigit():
         n = path.stem
         if title:
             title = re.sub(r'^(?:Lecture\s*)?\d+:\s*', '', title)

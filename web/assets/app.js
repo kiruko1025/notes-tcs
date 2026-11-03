@@ -29,7 +29,7 @@ function course(c){
   $('#content').innerHTML=`<div class="page"><div class="section-intro"><div class="eyebrow">${esc(c.subtitle)}</div><h1>${esc(c.title)}</h1></div><div class="section-actions"><a class="button primary" href="${noteHref(entries(c)[0])}">Read first note <span>→</span></a><a class="button" href="${c.pdf}" download>Download collection PDF <span>${down}</span></a></div><div class="section-heading"><h2>All entries</h2><span class="small-label">${c.count} entries · ${c.populated} with content</span></div><div class="notes-list">${entries(c).map((n,i)=>`<a class="note-row" href="${noteHref(n)}"><span class="note-number">${String(n.lecture??i+1).padStart(2,'0')}</span><div class="note-info"><h2>${esc(titleText(n))}</h2><p>${n.state==='empty'?'No written content yet':n.state==='stub'?'Brief starter note':`${n.minutes} min read${n.date?' · '+dateText(n.date):''}`}</p></div>${n.state==='empty'?'<span class="note-status">Empty</span>':n.state==='stub'?'<span class="note-status">Starter</span>':''}<span class="row-arrow">→</span></a>`).join('')}</div></div>`;
 }
 function flattenHeadings(headings){return headings.flatMap(h=>[h,...flattenHeadings(h.children??[])]);}
-function outlineLinks(n){return flattenHeadings(n.headings).filter(h=>document.getElementById(h.id)).map(h=>`<a class="${h.level>2?'sub':''}" href="#/note/${n.id}?section=${encodeURIComponent(h.id)}">${esc(stripMarkup(h.name))}</a>`).join('');}
+function outlineLinks(n){return flattenHeadings(n.headings).filter(h=>document.getElementById(h.id)).map(h=>`<a class="${h.level>2?'sub':''}" href="#/note/${n.id}?section=${encodeURIComponent(h.id)}"><span class="arithmatex">${esc(document.getElementById(h.id).textContent)}</span></a>`).join('');}
 function stripMarkup(s){const e=document.createElement('div');e.innerHTML=s;return e.textContent;}
 async function note(n,section){
   const version=++renderVersion;
@@ -40,7 +40,7 @@ async function note(n,section){
   const links=outlineLinks(n);$('#outline-links').innerHTML=links;$('#mobile-outline-links').innerHTML=links;if(!links){$('.outline').hidden=true;$('.mobile-outline').hidden=true;}
   $('#print-note').addEventListener('click',async()=>{if(window.MathJax?.startup?.promise)await MathJax.startup.promise;window.print();});
   $('#copy-link').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(location.href);toast('Link copied');}catch{toast('Copy this page’s URL from your address bar.');}});
-  try{if(window.MathJax?.startup?.promise){await MathJax.startup.promise;if(version!==renderVersion)return;MathJax.typesetClear();await MathJax.typesetPromise([$('#article')]);}}catch(error){console.warn('Math rendering issue',error);}
+  try{if(window.MathJax?.startup?.promise){await MathJax.startup.promise;if(version!==renderVersion)return;MathJax.typesetClear();await MathJax.typesetPromise([$('#article'), $('#outline-links'), $('#mobile-outline-links')]);}}catch(error){console.warn('Math rendering issue',error);}
   if(section&&version===renderVersion){document.getElementById(section)?.scrollIntoView({block:'start'});}
 }
 function downloads(){
@@ -53,7 +53,7 @@ function render(){
   ++renderVersion;
   const [path,query='']=(location.hash.slice(1)||'/').split('?');const parts=path.split('/').filter(Boolean);
   currentNote=null;currentCollection=null;
-  if(parts[0]==='note') {currentNote=catalog.notes.find(n=>n.id===parts[1]);if(currentNote)currentCollection=collectionOf(currentNote);}
+  if(parts[0]==='note') {currentNote=catalog.notes.find(n=>n.id===(catalog.aliases?.[parts[1]]??parts[1]));if(currentNote)currentCollection=collectionOf(currentNote);}
   if(parts[0]==='course')currentCollection=catalog.collections.find(c=>c.id===parts[1]);
   navigateMenu();closeMenu();
   if(currentNote)note(currentNote,new URLSearchParams(query).get('section'));

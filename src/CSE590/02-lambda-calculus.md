@@ -1,14 +1,97 @@
 ---
-title: "3: Binding, Alpha Equivalence, and Substitution"
+title: "Lambda Calculus"
 author: ""
-date: "2026-09-09"
-tags: []
-draft:
+tags: [CSE590]
+draft: false
 ---
 
-# Lecture 3: Binding, Alpha Equivalence, and Substitution
+# Lambda Calculus
 
-**Core idea:** substitution must preserve which binder each occurrence refers to.
+## Lambda syntax
+
+Countably infinite variable set $\mathrm{Var}$; finite terms:
+
+$$
+e::=x\mid\lambda x.e\mid e_1\,e_2.
+$$
+
+| Form | Meaning |
+| --- | --- |
+| $x$ | Variable reference. |
+| $\lambda x.e$ | Function: parameter $x$, body $e$. |
+| $e_1\,e_2$ | Apply $e_1$ to $e_2$. |
+
+- $e,e_1,e_2$: metavariables ranging over terms.
+- Untyped: no restrictions on application; $x\,x$ allowed.
+- Numbers/booleans: later encodings, not primitive syntax.
+
+### Parsing
+
+$$
+\begin{aligned}
+e_1\,e_2\,e_3&=(e_1\,e_2)\,e_3
+&&\text{application: left-associative},\\
+\lambda x.e_1\,e_2&=\lambda x.(e_1\,e_2)
+&&\text{body extends right},\\
+\lambda x\,y.e&=\lambda x.\lambda y.e
+&&\text{currying}.
+\end{aligned}
+$$
+
+**Watch:** $\lambda x.x\,y\ne(\lambda x.x)\,y$.
+
+**Currying:** take one argument; return a function for the next.
+
+$$
+(\lambda x.\lambda y.x)\,a\,b
+\to_\beta(\lambda y.a)\,b\to_\beta a
+\qquad(y\notin\mathrm{FV}(a)).
+$$
+
+### Common terms
+
+| Name | Term |
+| --- | --- |
+| Identity $I$ | $\lambda x.x$ |
+| First selector $K$ | $\lambda x.\lambda y.x$ |
+| Second selector | $\lambda x.\lambda y.y$ |
+| Application | $\lambda f.\lambda x.f\,x$ |
+| Composition: $f$, then $g$ | $\lambda f.\lambda g.\lambda x.g\,(f\,x)$ |
+
+## Binding and free variables
+
+- **Binder:** $x$ in $\lambda x.e$.
+- **Bound occurrence:** refers to nearest enclosing binder of the same name.
+- **Free occurrence:** no enclosing matching binder.
+- **Shadowing:** in $\lambda x.\lambda x.x$, the final $x$ refers to the inner binder.
+
+$$
+\begin{aligned}
+\mathrm{FV}(x)&=\{x\},\\
+\mathrm{FV}(e_1\,e_2)&=\mathrm{FV}(e_1)\cup\mathrm{FV}(e_2),\\
+\mathrm{FV}(\lambda x.e)&=\mathrm{FV}(e)\setminus\{x\}.
+\end{aligned}
+$$
+
+- **Closed term / combinator:** $\mathrm{FV}(e)=\varnothing$.
+- **Open term:** at least one free variable.
+- Example: $\mathrm{FV}(\lambda x.x\,y)=\{y\}$.
+
+## Beta reduction
+
+$$
+(\lambda x.e)\,s\to_\beta e[x\mapsto s].
+$$
+
+Replace free occurrences of $x$ by $s$; **avoid capture**.
+
+$$
+(\lambda x.\lambda y.y)\,a\,b
+\to_\beta(\lambda y.y)\,b
+\to_\beta b.
+$$
+
+Reduction rules and strategies: [reduction and evaluation](03-reduction-and-evaluation.md).
 
 ## Capture: the main mistake
 
@@ -28,28 +111,16 @@ $$
 - Cause: inner $\lambda y$ captures the argument's free $y$.
 - Fix: rename that binder to fresh $a$ before substitution.
 
-## Free variables and freshness
-
-$$
-\begin{aligned}
-\mathrm{FV}(x)&=\{x\},\\
-\mathrm{FV}(e_1\,e_2)&=\mathrm{FV}(e_1)\cup\mathrm{FV}(e_2),\\
-\mathrm{FV}(\lambda x.e)&=\mathrm{FV}(e)\setminus\{x\}.
-\end{aligned}
-$$
+## Freshness
 
 - **Fresh for $e$:** not in $\mathrm{FV}(e)$.
 - Safe implementation choice: new name absent everywhere in the relevant terms.
 - Infinite names + finite terms $\Rightarrow$ always a fresh choice.
 - **Support** of a term modulo alpha equivalence: its free-variable set.
 
-Support records the names that matter beyond a choice of bound-variable spelling. For $\lambda x.x\,y$, only $y$ belongs to the support. A fresh name may already occur bound: $x$ is fresh for $\lambda x.x$. Choosing a name absent everywhere is a stronger, convenient way to avoid bookkeeping.
-
 ## Swapping names
 
 $e[x\leftrightarrow y]$: simultaneous exchange of **all** $x,y$ names, including binders.
-
-“Simultaneous” matters: replacing $x$ by $y$ and then $y$ by $x$ would collapse both original names into $x$. A swap remembers where each original name occurred, so applying the same swap twice restores the term.
 
 $$
 z[x\leftrightarrow y]=
@@ -74,13 +145,11 @@ $$
 - Unlike substitution: also changes binding sites and free names.
 - Arbitrary swap $\ne$ alpha renaming.
 
-Example: $(\lambda x.x\,y)[x\leftrightarrow y]=\lambda y.y\,x$. Binding is preserved, but the free name changes from $y$ to $x$; therefore these terms are not alpha-equivalent.
+Example: $(\lambda x.x\,y)[x\leftrightarrow y]=\lambda y.y\,x$. Free name changes; not alpha-equivalent.
 
 ## Alpha equivalence
 
 $e\equiv_\alpha e'$: same syntax/binding structure; same free names; bound names may differ.
-
-Alpha equivalence ignores parameter spelling, but preserves the structure of the expression. For example, $\lambda x.(\lambda y.y)\,x$ and $\lambda x.x$ are beta-convertible, but not alpha-equivalent: removing the inner application requires computation, not renaming.
 
 $$
 \lambda x.x\equiv_\alpha\lambda a.a,
@@ -106,8 +175,6 @@ $$
 
 Choose common $z$ absent everywhere in $e,e',x,y$. Different outer constructors: never alpha-equivalent.
 
-**Fresh-name comparison:** give both outer parameters the same temporary name, then compare their bodies. Freshness prevents an unrelated occurrence from being mistaken for either parameter.
-
 **Shadowing:**
 
 $$
@@ -117,7 +184,7 @@ $$
 
 First two: return inner parameter. Last: return outer parameter.
 
-**Barendregt convention:** choose bound names pairwise distinct and distinct from relevant free names; rename after duplication as needed. Renaming is not a beta step.
+**Barendregt convention:** bound names distinct from each other and relevant free names. Rename again after duplication.
 
 ## Capture-avoiding substitution
 
@@ -136,14 +203,6 @@ $$
 =(e_1[x\mapsto s])\,(e_2[x\mapsto s]).
 $$
 
-Abstraction cases:
-
-| Condition | Action |
-| --- | --- |
-| Binder is $x$ | Stop: its $x$ occurrences are bound. |
-| Binder $y\ne x$, $y\notin\mathrm{FV}(s)$ | Recurse into body. |
-| Binder $y\ne x$, $y\in\mathrm{FV}(s)$ | Rename $y$ to fresh $z$, then recurse. |
-
 $$
 \begin{aligned}
 (\lambda x.e)[x\mapsto s]&=\lambda x.e,\\
@@ -155,8 +214,6 @@ $$
 $$
 
 Last case: $z$ absent everywhere in $e,s,x,y$. Fresh choices give alpha-equivalent results.
-
-The abstraction cases protect two different scopes. If the binder is $x$, it starts a new scope for $x$, so the outer replacement stops there. If its name occurs free in $s$, inserting $s$ could capture that name, so rename the binder first. Substitution inserts $s$ as a whole; it does not repeatedly substitute inside the inserted copy.
 
 Examples:
 
@@ -178,13 +235,31 @@ $$
 \subseteq(\mathrm{FV}(e)\setminus\{x\})\cup\mathrm{FV}(s).
 $$
 
-Equality in the second formula when $x\in\mathrm{FV}(e)$. Proof in [Lecture 6](6.md).
+Equality in the second formula when $x\in\mathrm{FV}(e)$. Inclusion proof: [substitution bounds free variables](06-induction-and-proof-rules.md#proof_1_substitution_bounds_free_variables).
 
-Read the bound as: remaining free names come from the original term, except replaced $x$, or from the inserted term $s$. Inclusion allows unused arguments: if $x$ never occurs free, none of $s$ is inserted.
+## Nameless representations
+
+Example: $\lambda f.\lambda x.\lambda y.(f\,x)\,(f\,y)$.
+
+| Representation | Numbering | Result |
+| --- | --- | --- |
+| De Bruijn indices | Nearest binder = $0$; count outward. | $\lambda.\lambda.\lambda.(2\;1)\,(2\;0)$ |
+| De Bruijn levels | Outermost binder = $0$; count inward. | $\lambda.\lambda.\lambda.(0\;1)\,(0\;2)$ |
+
+At binder depth $d$:
+
+$$
+\text{index}=d-1-\text{level}.
+$$
+
+- Numbers here: binder references, not Church numerals.
+- Alpha-equivalent closed terms: identical nameless representation.
+- Open terms: require an external context or separate free names.
+- Moving terms across binders: may require index shifting.
 
 ## De Bruijn substitution
 
-**Same scope problem, different bookkeeping.** Zero-based indices; fixed context for free variables.
+Zero-based indices; fixed context for free variables.
 
 In context $[y]$:
 
@@ -195,13 +270,11 @@ $$
 \to_\beta\lambda.1.
 $$
 
-Result $\lambda.1$: refers past the remaining binder to free $y$. Result $\lambda.0$ would incorrectly mean identity.
+$\lambda.1$ refers to free $y$; $\lambda.0$ would mean identity.
 
 ### Shift
 
 $\uparrow_c^d t$: add $d$ to indices at least cutoff $c$.
-
-**Role of the cutoff:** indices below $c$ belong to binders already crossed inside the term; leave them alone. Indices at least $c$ refer farther outward and must move when the surrounding context gains or loses a binder. Entering a lambda increases the cutoff by one.
 
 $$
 \uparrow_c^d k=
@@ -233,8 +306,6 @@ $$
 \end{aligned}
 $$
 
-Crossing a lambda puts one extra binder between the body and the context outside it. The target index therefore increases from $j$ to $j+1$, and the replacement shifts for the same reason. This operation replaces references only; the final downward shift in the beta rule handles removing the applied binder.
-
 Full beta rule:
 
 $$
@@ -246,16 +317,4 @@ $$
 2. Substitute, shifting again under nested binders.
 3. Shift down to remove the contracted binder; no negative indices allowed.
 
-For the opening example, $t=\lambda.1$ and $s=0$: shift $s$ to $1$; substitute under the inner lambda to obtain $\lambda.2$; shift down to $\lambda.1$. Each adjustment preserves the reference to the same free $y$.
-
-## Reduction vocabulary
-
-| Term | Meaning |
-| --- | --- |
-| Beta redex | $(\lambda x.e)\,s$ |
-| Contractum | $e[x\mapsto s]$ |
-| $\to_\beta^*$ | Zero or more beta steps. |
-| Beta normal form | No beta redex anywhere, including under lambdas. |
-| Value | Strategy-dependent; CBV/CBN use $v::=\lambda x.e$. |
-
-**Sources:** Lecture 3 slides/tablet; Pierce, Chapters 5–6; Angiuli, [Binding, §§3–4](https://carloangiuli.com/courses/b522-sp25/04-binding.pdf).
+Sources: Lectures 2–3: `lec02_programs-functions-lambda-terms.pdf`, p. 5; `Lecture 2.pdf`, pp. 1–4; `lec03-slides.pdf`, pp. 5–8; `lec03-tablet.pdf`, p. 1.

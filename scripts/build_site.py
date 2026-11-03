@@ -13,6 +13,26 @@ COLLECTIONS = [
     dict(id='mathematical-background', folder='Mathematical Background', title='Mathematical Background', subtitle='Foundations & proof writing', description='A place for the mathematical foundations behind the courses.', symbol='∀', color='orange'),
 ]
 
+# Old lecture links lead to the corresponding topic after the reorganization.
+LEGACY_TOPICS = {
+    'cse574': {
+        2: '01-computation-and-turing-machines', 3: '03-np-completeness',
+        4: '03-np-completeness', 5: '04-hierarchy-theorems',
+        6: '06-oracles-and-relativization', 7: '07-polynomial-hierarchy',
+        8: '07-polynomial-hierarchy', 9: '08-space-complexity',
+        10: '10-logspace-and-nl', 11: '11-time-space-tradeoffs',
+        12: '12-circuits-and-advice',
+    },
+    'cse590': {
+        2: '02-lambda-calculus', 3: '02-lambda-calculus',
+        4: '03-reduction-and-evaluation', 5: '05-recursion-and-fixed-points',
+        6: '06-induction-and-proof-rules', 7: '07-imp-operational-semantics',
+        8: '07-imp-operational-semantics', 9: '07-imp-operational-semantics',
+        10: '08-imp-denotational-semantics', 11: '09-types-and-type-soundness',
+        12: '09-types-and-type-soundness',
+    },
+}
+
 def natural(path):
     return [int(x) if x.isdigit() else x for x in re.split(r'(\d+)', path.name)]
 
@@ -55,6 +75,11 @@ for collection in COLLECTIONS:
         path = str(file.relative_to(ROOT/'src'))
         notes.append(dict(id=note_id, collection=collection['id'], path=path, title=title, lecture=int(file.stem) if file.stem.isdigit() else None, html=html, text=plain, excerpt=excerpt, headings=md.toc_tokens, words=words, minutes=max(1, round(words/180)), date=date, tags=meta.get('tags') or [], state=state))
 
+aliases = {f'{course}-{lecture}': f'{course}-{topic}'
+           for course, topics in LEGACY_TOPICS.items() for lecture, topic in topics.items()}
+note_lookup = {note['id']: note for note in notes}
+assert all(target in note_lookup for target in aliases.values()), 'Legacy link target missing'
+
 # Resolve existing Markdown links against their actual source location.
 lookup={n['path']:n['id'] for n in notes}
 import posixpath
@@ -89,15 +114,20 @@ shutil.copytree(ROOT / 'web', output)
 stylesheet_version = hashlib.sha256((output/'assets/style.css').read_bytes()).hexdigest()[:12]
 index = output/'index.html'
 index.write_text(index.read_text().replace('href="assets/style.css"', f'href="assets/style.css?v={stylesheet_version}"'), encoding='utf-8')
-(output/'assets/catalog.json').write_text(json.dumps(dict(collections=COLLECTIONS, notes=notes), ensure_ascii=False, default=str), encoding='utf-8')
+script_version = hashlib.sha256((output/'assets/app.js').read_bytes()).hexdigest()[:12]
+index.write_text(index.read_text().replace('src="assets/app.js"', f'src="assets/app.js?v={script_version}"'), encoding='utf-8')
+(output/'assets/catalog.json').write_text(json.dumps(dict(collections=COLLECTIONS, notes=notes, aliases=aliases), ensure_ascii=False, default=str), encoding='utf-8')
 for file in (ROOT/'src').rglob('*.md'):
     target = output/'source'/file.relative_to(ROOT/'src')
     target.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(file, target)
 
 # Keep old MkDocs directory URLs and section bookmarks working.
-for note in notes:
-    legacy = Path(note['path']).with_suffix('')
+redirects = [(Path(note['path']).with_suffix(''), note) for note in notes]
+for collection in COLLECTIONS:
+    for lecture, topic in LEGACY_TOPICS.get(collection['id'], {}).items():
+        redirects.append((Path(collection['folder'])/str(lecture), note_lookup[collection['id']+'-'+topic]))
+for legacy, note in redirects:
     directory = output/legacy
     directory.mkdir(parents=True, exist_ok=True)
     root = '../' * len(legacy.parts)
@@ -115,4 +145,4 @@ location.replace(destination.href);
 '''
     (directory/'index.html').write_text(page, encoding='utf-8')
 (output/'.nojekyll').touch()
-print(f'Built {len(notes)} entries, {len(COLLECTIONS)} collections, and {len(notes)} legacy redirects in out/.')
+print(f'Built {len(notes)} entries, {len(COLLECTIONS)} collections, and {len(redirects)} legacy redirects in out/.')

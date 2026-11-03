@@ -7,8 +7,8 @@ Live website: <https://kiruko1025.github.io/notes-tcs/>
 
 ## Edit notes
 
-Edit the Markdown files in `src/`. Keep lecture filenames numeric for chronological
-ordering. Titles, dates, and tags come from YAML frontmatter when present. Empty
+Edit the Markdown files in `src/`. Use numeric prefixes such as `01-topic.md` for
+topic ordering; numeric lecture filenames are also supported. Titles, dates, and tags come from YAML frontmatter when present. Empty
 files remain visible as unfinished entries. The homepage replaces the old
 placeholder `src/index.md`.
 
@@ -52,7 +52,7 @@ runs that workflow for the latest pushed `main` commit; it does not upload
 uncommitted local edits.
 
 The website works under the `/notes-tcs/` project path and at a domain root.
-Legacy MkDocs lecture URLs redirect to the corresponding new note, preserving
-section bookmarks.
+Legacy MkDocs lecture URLs and old `#/note/cse574-2` style links open the
+corresponding topic. Section bookmarks are retained when the heading still exists.
 
 MathJax 3.2.2 is bundled in `web/assets/vendor/`, with its Apache 2.0 license.
