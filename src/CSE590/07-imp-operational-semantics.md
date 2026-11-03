@@ -671,5 +671,3 @@ Boolean version analogous.
 | First step, then remaining run | IH gives result after first step; anti-reduction restores result before it |
 
 Reverse expression proofs: same pattern, ending at a numeral or Boolean value.
-
-Sources: Lecture 7, `lec07-slides.pdf`, pp. 9–15; Lecture 8, `lec08-slides.pdf`, PDF pp. 5–21; Lecture 9, `lec09-slides.pdf`, PDF pp. 4–15. Boolean rules complete the slides’ exercise.

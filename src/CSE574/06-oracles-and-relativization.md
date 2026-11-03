@@ -80,5 +80,3 @@ $$
 Neither equality nor separation can follow from a fully relativizing proof. Resolving P versus NP needs a nonrelativizing ingredient. This does not exclude every use of diagonalization.
 
 Bennett–Gill, stated only: if each string independently enters $O$ with probability $1/2$, then $\mathrm P^O\ne\mathrm{NP}^O$ almost surely.
-
-Sources: [Lecture 6](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture06/lecture06-Huang-Heidi.pdf>); [Chapter 3](</home/everett/Desktop/Umich-EECS/CSE574/handouts/Chapter 03.pdf>).

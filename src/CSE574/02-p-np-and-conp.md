@@ -81,5 +81,3 @@ $$
 NP simulation: enumerate $2^{p(n)}$ witnesses; polynomial verification each. Total $2^{n^{O(1)}}$.
 
 $2^{\sqrt n}=2^{o(n)}$: superpolynomial, subexponential. See [Hierarchy theorems](04-hierarchy-theorems.md).
-
-Sources: [Lecture 2](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture02/lecture02-Zhengjie-Min.pdf>); [Lecture 3, Hsieh](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture03/lecture03-Hsieh-Benjamin.pdf>); [Lecture 3, Shah](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture03/lecture03-Shah-Namita.pdf>); [Lecture 4, Du](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture04/lecture04-Du-Weining.pdf>).

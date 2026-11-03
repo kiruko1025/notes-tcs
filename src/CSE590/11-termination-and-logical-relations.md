@@ -112,5 +112,3 @@ $$
 - Example: $\lambda x:\mathrm{int}.x+1\in\mathcal V_{\mathrm{int}\to\mathrm{int}}$; every numeral input gives a numeral output.
 
 **Strong normalization:** every full beta-reduction sequence terminates, including reductions under lambdas. Kozen proves this stronger theorem for pure STLC using a stronger logical predicate. The CBV relation above proves CBV termination.
-
-Sources: `lec15-slides.pdf`, pp. 5–11; `kozen-cs6110-lec23-strong-normalization.pdf`, pp. 1–3.

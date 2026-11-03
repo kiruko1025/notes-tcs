@@ -148,5 +148,3 @@ $$
 $$
 
 While case: finite derivations correspond to finite approximations. Inversion and anti-reduction: [the operational-equivalence proof](07-imp-operational-semantics.md#equivalence_proof).
-
-Sources: Lecture 10, `lec10-slides.pdf`, pp. 4–8; Kozen, `kozen-cs6110-lec18-denotational-semantics-of-imp.pdf`, §§3–4.

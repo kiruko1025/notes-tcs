@@ -135,5 +135,3 @@ $$
 $$
 
 Hierarchy theorems give $\mathrm L\ne\mathrm{PSPACE}$ and $\mathrm P\ne\mathrm{EXP}$. They do not identify an adjacent strict inclusion in this chain.
-
-Sources: [Lecture 8](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture08/lecture08-Xu-Everett.pdf>); [Lecture 9, Nie](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture09/lecture09-Nie-Zinnia.pdf>); [Lecture 9, Menacho Ordonez](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture09/lecture09-MenachoOrdonez-Daniel.pdf>); [Lecture 11](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture11/lecture11-Frieler-Nicholas.pdf>); [Chapter 4](</home/everett/Desktop/Umich-EECS/CSE574/handouts/Chapter 04.pdf>).

@@ -52,5 +52,3 @@ contradicting $L(D)=L(Q)$. Padding changes the description length, not the machi
 - $\mathrm P\subsetneq\mathrm{EXP}$: $\mathrm P\subseteq\mathrm{DTIME}(2^n)$; separate $2^n$ from $2^{n^2}$.
 - Space $s\ge\log n$: $2^{O(s)}$ configurations for a fixed machine. An $O(s)$-bit counter detects timeout before repetition.
 - Nondeterministic acceptance cannot be complemented by swapping outcomes: “some branch accepts” becomes “some branch rejects,” not “all reject.”
-
-Sources: [Lecture 5, Lee](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture05/lecture05-Lee-Amy.pdf>); [Lecture 5, Wanner](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture05/lecture05-Wanner-Alice.pdf>); [Lecture 4, Cho](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture04/lecture04-Cho-Geonwoo.pdf>); [Chapter 3](</home/everett/Desktop/Umich-EECS/CSE574/handouts/Chapter 03.pdf>).

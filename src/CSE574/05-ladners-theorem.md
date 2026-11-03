@@ -57,5 +57,3 @@ $$
 Invalid padding → reject. Otherwise recurse on the smaller core; brute-force below a fixed threshold. $O(\log\log n)$ rounds, polynomial total time $\Rightarrow$ SAT in P: contradiction.
 
 The constructed $H$ matters; arbitrary padding does not prove Ladner.
-
-Sources: [Lecture 5, Lee](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture05/lecture05-Lee-Amy.pdf>); [Lecture 5, Wanner](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture05/lecture05-Wanner-Alice.pdf>).

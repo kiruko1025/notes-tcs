@@ -119,5 +119,3 @@ $$
 Likewise $\lambda x:\sigma.\Omega_{\sigma\to\tau}\,x$ is a value, while $\Omega_{\sigma\to\tau}$ diverges. Context $(\lambda f:\sigma\to\tau.\mathsf{true})[\ ]$ distinguishes them.
 
 With state/output, $(p.1,p.2)$ may run $p$ twice. Unit-typed computations may still have effects. Recheck each law; types alone do not justify it.
-
-Sources: `lec17-slides.pdf`, pp. 5–9; `kozen-cs6110-lec04-reduction-strategies.pdf`, §3, pp. 3–4. Effects examples illustrate the lecture's stated learning goal.

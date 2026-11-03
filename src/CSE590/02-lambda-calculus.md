@@ -316,5 +316,3 @@ $$
 1. Shift argument into binder's context.
 2. Substitute, shifting again under nested binders.
 3. Shift down to remove the contracted binder; no negative indices allowed.
-
-Sources: Lectures 2–3: `lec02_programs-functions-lambda-terms.pdf`, p. 5; `Lecture 2.pdf`, pp. 1–4; `lec03-slides.pdf`, pp. 5–8; `lec03-tablet.pdf`, p. 1.

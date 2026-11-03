@@ -265,5 +265,3 @@ $$
 Safe execution, but the unused branch fails typing. The type system rejects some safe programs.
 
 Products, sums, and their typing rules: [algebraic data types](10-algebraic-data-types.md).
-
-Sources: `lec11-slides.pdf`, slides 9–14; `lec12-slides.pdf`, slides 8–12; `lec13-slides.pdf`, slides 5–8; Kozen, `kozen-cs6110-lec20-typed-lambda-calculus.pdf`, §§2–6, and `kozen-cs6110-lec22-type-soundness.pdf`, §§1–4; [Discussion 6](https://externalhom.com/3598e8b965c9563c/), §§2–4.

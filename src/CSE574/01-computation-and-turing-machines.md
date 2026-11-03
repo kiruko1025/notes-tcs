@@ -55,5 +55,3 @@ $$
 **HALT undecidable:** a halting decider would decide $L_{\mathrm{diag}}$. Query whether $M_\alpha(\alpha)$ halts. No → accept. Yes → run it and invert its answer.
 
 Hierarchy diagonalization adds a clock, making the diagonal language decidable.
-
-Sources: [Lecture 2](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture02/lecture02-Zhengjie-Min.pdf>); [Discussion 1](</home/everett/Desktop/Umich-EECS/CSE574/discussions/disc01.pdf>); [Discussion 2](</home/everett/Desktop/Umich-EECS/CSE574/discussions/disc02.pdf>).

@@ -149,5 +149,3 @@ Start with $c_0=1$, compute through $c_N$, then enumerate $R_N$ and accept iff $
 - Certificate length: polynomial; at most $O(N^4\log N)$ bits with this implementation.
 
 Thus $\overline{\mathrm{PATH}}\in\mathrm{NL}$. Logspace reductions transfer this to complements of all NL languages.
-
-Sources: [Lecture 9, Nie](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture09/lecture09-Nie-Zinnia.pdf>); [Lecture 9, Menacho Ordonez](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture09/lecture09-MenachoOrdonez-Daniel.pdf>); [Lecture 10](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture10/lecture10-Chae-Yeonu.pdf>); [Lecture 11](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture11/lecture11-Frieler-Nicholas.pdf>); [Chapter 4](</home/everett/Desktop/Umich-EECS/CSE574/handouts/Chapter 04.pdf>).

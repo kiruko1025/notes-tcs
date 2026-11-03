@@ -57,5 +57,3 @@ $$
 But $ark<r$, contradicting the nondeterministic time hierarchy.
 
 Transfer to SAT: near-linear Cook–Levin reduction, with output bits computed on demand. The strict exponent inequality absorbs polylogarithmic overhead. The condition $rk\ge1$ covers reading the input.
-
-Sources: [Lecture 11](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture11/lecture11-Frieler-Nicholas.pdf>); [Discussion 5](</home/everett/Desktop/Umich-EECS/CSE574/discussions/disc05.pdf>); [Chapter 5](</home/everett/Desktop/Umich-EECS/CSE574/handouts/Chapter 05.pdf>).

@@ -119,5 +119,3 @@ $$
 \mathrm{NPSPACE}\subseteq\mathrm{PSPACE},
 \qquad\mathrm{PSPACE}=\mathrm{NPSPACE}.
 $$
-
-Sources: [Lecture 9, Nie](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture09/lecture09-Nie-Zinnia.pdf>); [Lecture 9, Menacho Ordonez](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture09/lecture09-MenachoOrdonez-Daniel.pdf>); [Lecture 10](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture10/lecture10-Chae-Yeonu.pdf>); [Chapter 4](</home/everett/Desktop/Umich-EECS/CSE574/handouts/Chapter 04.pdf>).

@@ -124,5 +124,3 @@ Logic is intuitionistic. General excluded middle $A\lor\neg A$ is not derivable 
 Dependent types extend this: $\Pi x:A.B(x)$ corresponds to $\forall$; $\Sigma x:A.B(x)$ stores a witness and evidence. In Rocq, a `Prop` existential has stricter elimination than a `Type`-level dependent pair.
 
 Categorical view: types are objects, programs are arrows; products, sums, and functions give a bicartesian closed category, modulo the corresponding beta/eta equations.
-
-Sources: `lec13-slides.pdf`, slides 9–12; `lec14-slides.pdf`, slides 5–13; [Discussion 7](https://externalhom.com/c70bd8619dbbd215/), §§1–3.

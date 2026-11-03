@@ -87,5 +87,3 @@ $$
 \boxed{\operatorname{PARITY}\notin\mathrm{AC}^0,
 \qquad \mathrm{AC}^0\subsetneq\mathrm{NC}^1.}
 $$
-
-Sources: [Lecture 14](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture14/lecture14-Wang-Shunjie.pdf>); [Chapter 14](</home/everett/Desktop/Umich-EECS/CSE574/handouts/Chapter 14.pdf>).

@@ -126,5 +126,3 @@ Two necessary delays:
 2. Branch thunks: avoid a recursive call in the zero case.
 
 Result represents $n!$; weak CBV need not normalize the body.
-
-Sources: Lectures 5–6: `lec05-slides.pdf`, pp. 3–6; `Lecture 5 09-16.pdf`, p. 1; `lec06-slides.pdf`, pp. 7–9; `Lecture 6 09-21.pdf`, p. 1.

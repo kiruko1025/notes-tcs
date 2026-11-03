@@ -168,5 +168,3 @@ All data have polynomial length. Pad unused entries; malformed queries have answ
 Hence $\mathrm{NP}^{\mathrm{NP}}=\mathrm{NP}^{\mathrm{SAT}}=\Sigma_2^{\mathrm P}$.
 
 Higher levels: combine yes checks in $\Sigma_{i-1}^{\mathrm P}$ and no checks in $\Pi_{i-1}^{\mathrm P}$ into at most $i$ blocks.
-
-Sources: [Lecture 7](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture07/lecture07-Doredla-Jonathan.pdf>); [Lecture 8](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture08/lecture08-Xu-Everett.pdf>); [Chapter 5](</home/everett/Desktop/Umich-EECS/CSE574/handouts/Chapter 05.pdf>).

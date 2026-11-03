@@ -65,5 +65,3 @@ A\in\mathrm L&\iff\mathrm P=\mathrm L.
 $$
 
 Use closure under logspace reductions; logspace functions have uniform $\mathrm{NC}^2$ circuits. Linear programming is another P-complete problem.
-
-Sources: [Lecture 14](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture14/lecture14-Wang-Shunjie.pdf>); [Chapter 6](</home/everett/Desktop/Umich-EECS/CSE574/handouts/Chapter 06.pdf>).

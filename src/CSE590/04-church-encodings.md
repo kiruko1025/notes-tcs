@@ -169,5 +169,3 @@ $$
 $$
 
 Use $b\,(\lambda u.e_t)\,(\lambda u.e_f)$; update Boolean producers too. Do not also use $\mathsf{If}_{\mathrm{cbv}}$ (double forcing).
-
-Sources: Lectures 4–6: `lec04-slides.pdf`, pp. 4–6; `Lecture 4.pdf`, p. 1; `lec05-slides.pdf`, pp. 3–6; `Lecture 5 09-16.pdf`, p. 1; `lec06-slides.pdf`, pp. 7–9; `Lecture 6 09-21.pdf`, p. 1.

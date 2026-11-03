@@ -109,5 +109,3 @@ $$
 **Advice to circuit:** simulate $M(x,\alpha)$ by a polynomial-size circuit, then hardwire the bits of $\alpha_n$ as constants.
 
 Lower bounds and Karp–Lipton: [Circuit lower bounds](13-circuit-lower-bounds.md).
-
-Sources: [Lecture 12](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture12/lecture12-Pathak-Anwesha.pdf>); [Chapter 6](</home/everett/Desktop/Umich-EECS/CSE574/handouts/Chapter 06.pdf>).

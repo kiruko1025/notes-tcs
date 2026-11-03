@@ -206,5 +206,3 @@ NP-complete:
 
 - In NP: guess input and evaluate the circuit.
 - NP-hard: a CNF is a circuit after replacing large AND/OR gates with binary trees.
-
-Sources: [Lecture 3, Hsieh](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture03/lecture03-Hsieh-Benjamin.pdf>); [Lecture 3, Shah](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture03/lecture03-Shah-Namita.pdf>); [Lecture 4, Du](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture04/lecture04-Du-Weining.pdf>); [Lecture 4, Cho](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture04/lecture04-Cho-Geonwoo.pdf>); [Discussion 3](</home/everett/Desktop/Umich-EECS/CSE574/discussions/disc03.pdf>); [Lecture 12](</home/everett/Desktop/Umich-EECS/CSE574/scribes/lecture12/lecture12-Pathak-Anwesha.pdf>).

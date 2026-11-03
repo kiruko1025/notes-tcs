@@ -59,5 +59,3 @@ $$
 - **Intensional view:** expression or algorithm computing it.
 - Example: $n+n$ and $2n$ — different descriptions, same integer function.
 - Programs may diverge; their computed functions need not be total.
-
-Sources: `lec01_course-introduction-with-applications.pdf`, pp. 11–26; `lec02_programs-functions-lambda-terms.pdf`, p. 5; `Lecture 2.pdf`, pp. 1–4.

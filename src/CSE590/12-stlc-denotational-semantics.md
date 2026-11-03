@@ -161,5 +161,3 @@ Same result for integers. At function types, relate application behavior; a math
 Total denotations alone do not prove operational termination. The logical relation supplies that connection.
 
 Equal denotations also imply [contextual equivalence](13-contextual-equivalence.md).
-
-Sources: `lec14-slides.pdf`, slides 5–13; `lec16-slides.pdf`, pp. 5–13; Kozen, `kozen-cs6110-lec20-typed-lambda-calculus.pdf`, §§7–8, and `kozen-cs6110-lec21-data-structures-and-recursion.pdf`, §4.

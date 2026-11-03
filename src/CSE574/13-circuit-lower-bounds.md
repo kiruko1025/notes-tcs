@@ -83,5 +83,3 @@ Let $m=\lceil1.1\log_2n\rceil$. Choose a hard $m$-bit function $f_m$; set $g_n(x
 - Counting lower bound: $\Omega(2^m/m)>n$.
 
 Fixing unused inputs preserves the lower bound. Adjust finitely many small lengths.
-
-Sources: [Chapter 6](</home/everett/Desktop/Umich-EECS/CSE574/handouts/Chapter 06.pdf>).

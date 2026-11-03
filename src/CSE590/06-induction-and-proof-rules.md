@@ -113,5 +113,3 @@ $$
 discarding free $y$.
 
 Prerequisites: [substitution](02-lambda-calculus.md) and [evaluation rules](03-reduction-and-evaluation.md).
-
-Source: `lec06-slides.pdf`, pp. 7–9; `Lecture 6 09-21.pdf`, p. 1.
